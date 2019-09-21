@@ -4,7 +4,8 @@ var app=express()
 
 var post=[
     {message:'hello'},
-    {message:'hiworld'}
+    {message:'hiworld'},
+    {message:'Andrew boy'}
 ]
 
 app.use(cors())
