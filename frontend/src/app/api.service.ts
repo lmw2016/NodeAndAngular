@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import {map} from 'rxjs/operators'
+import {map, tap, catchError} from 'rxjs/operators'
 import { Observable } from 'rxjs'
 
 @Injectable({
@@ -9,13 +9,12 @@ import { Observable } from 'rxjs'
 export class ApiService{
     constructor(private http:HttpClient){}
 
-      messages={};
+     // messages:any[]=[];
 
-    getMessages():void{
-        this.http.get('http://localhost:3000/posts').subscribe(res=>{
-            console.log(res);
-           this.messages=res;
-           console.log(this.messages);
-        })
+    getMessages():Observable<any[]>{
+      return  this.http.get<any[]>('http://localhost:3000/posts').pipe(
+        // tap(),
+        // catchError()
+        )
     }
 }
