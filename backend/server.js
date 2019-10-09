@@ -1,8 +1,10 @@
 var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
-var mongoose=require('mongoose')
+var mongoose = require("mongoose");
 var app = express();
+
+var User = require("./models/user.js");
 
 var post = [
   { message: "hello" },
@@ -18,11 +20,20 @@ app.get("/posts", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-   var userData=req.body;
-   console.log(userData.email)
-   res.sendStatus(200)
+  var user = new User(req.body);
+  //console.log(userData.email)
+  user.save((err, result) => {
+    if (err) {
+      console.log("saving user error");
+    }
+    res.sendStatus(200);
+  });
+    
 });
 
-mongoose.connect('')
+mongoose.connect("mongodb://localhost/pssocial", {useNewUrlParser: true, useUnifiedTopology: true},(err)=>{
+  if(!err)
+  console.log('connected to mongo')
+});
 
 app.listen(3000);
