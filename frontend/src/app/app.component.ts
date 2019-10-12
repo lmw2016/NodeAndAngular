@@ -17,5 +17,6 @@ export class AppComponent implements OnInit {
       this.messages=data;
       console.log(this.messages);
     });
+    //this.apiService.getMessagesWithSub();
   }
 }

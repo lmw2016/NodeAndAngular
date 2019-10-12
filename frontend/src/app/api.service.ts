@@ -9,7 +9,7 @@ import { Observable } from 'rxjs'
 export class ApiService{
     constructor(private http:HttpClient){}
 
-     // messages:any[]=[];
+     // messages={}
 
     getMessages():Observable<any[]>{
       return  this.http.get<any[]>('http://localhost:3000/posts').pipe(
@@ -17,4 +17,10 @@ export class ApiService{
         // catchError()
         )
     }
+
+    // getMessagesWithSub(){
+    //       this.http.get('http://localhost:3000/posts').subscribe(res=>{
+    //         this.messages=res
+    //     })
+    //   }
 }
