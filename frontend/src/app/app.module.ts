@@ -14,17 +14,21 @@ import {MatInputModule} from '@angular/material/input';
 import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './register.component';
+import { UsersComponent } from './users.component';
 
 
 const routers=[
-  {path:'register',component:RegisterComponent}
+  {path:'register',component:RegisterComponent},
+  {path:'users',component:UsersComponent},
+  {path:'profile/:id',component:UsersComponent}
 ]
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

@@ -29,4 +29,18 @@ export class ApiService{
           res=>{console.log(res)}
           )
       }
+
+      getUsers():Observable<any[]>{
+        return  this.http.get<any[]>('http://localhost:3000/users').pipe(
+          // tap(),
+          // catchError()
+          )
+      }
+
+      //code in video
+    //   getUsers(){
+    //      this.http.get<any[]>('http://localhost:3000/users').subscribe({
+    //          this.users=res.json() //this code won't work
+    //      })
+    //   }
 }

@@ -19,6 +19,11 @@ app.get("/posts", (req, res) => {
   res.send(post);
 });
 
+app.get("/users", async (req, res) => {
+  var users=await User.find({},'-pwd -__v');
+  res.send(users);
+});
+
 app.post("/register", (req, res) => {
   var user = new User(req.body);
   //console.log(userData.email)
