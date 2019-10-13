@@ -9,6 +9,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
    PSSocial
    <span style="flex:1 1 auto"></span>
    <button mat-button routerLink="/register">Register</button>
+   <button mat-button routerLink="/users">Show All Users</button>
    </mat-toolbar>
    <router-outlet><router-outlet>
   `,
