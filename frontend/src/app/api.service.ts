@@ -43,4 +43,9 @@ export class ApiService{
     //          this.users=res.json() //this code won't work
     //      })
     //   }
+    getProfile(id:string):Observable<any>{
+         return  this.http.get<any>('http://localhost:3000/profile/'+id).pipe(
+
+           );
+        }
 }

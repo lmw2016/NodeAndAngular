@@ -20,8 +20,18 @@ app.get("/posts", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-  var users=await User.find({},'-pwd -__v');
+  var users = await User.find({}, "-pwd -__v");
   res.send(users);
+});
+
+app.get("/profile/:id", async (req, res) => {
+  try {
+    var user = await User.findById(req.params.id, "-pwd -__v");
+    res.send(user);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 });
 
 app.post("/register", (req, res) => {
@@ -33,12 +43,14 @@ app.post("/register", (req, res) => {
     }
     res.sendStatus(200);
   });
-    
 });
 
-mongoose.connect("mongodb://localhost/pssocial", {useNewUrlParser: true, useUnifiedTopology: true},(err)=>{
-  if(!err)
-  console.log('connected to mongo')
-});
+mongoose.connect(
+  "mongodb://localhost/pssocial",
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  err => {
+    if (!err) console.log("connected to mongo");
+  }
+);
 
 app.listen(3000);

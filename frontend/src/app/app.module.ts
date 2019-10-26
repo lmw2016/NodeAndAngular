@@ -9,18 +9,20 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list'; 
 
 
 import { AppComponent } from './app.component';
 
 import { RegisterComponent } from './register.component';
 import { UsersComponent } from './users.component';
+import { ProfileComponent } from './profile.component';
 
 
 const routers=[
   {path:'register',component:RegisterComponent},
   {path:'users',component:UsersComponent},
-  {path:'profile/:id',component:UsersComponent}
+  {path:'profile/:id',component:ProfileComponent}
 ]
 
 
@@ -28,7 +30,8 @@ const routers=[
   declarations: [
     AppComponent,
     RegisterComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ const routers=[
      MatCardModule,
      MatToolbarModule,
      MatInputModule,
+     MatListModule,
     RouterModule.forRoot(routers),
     BrowserAnimationsModule,
    
