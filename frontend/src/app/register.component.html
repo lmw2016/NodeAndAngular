@@ -10,10 +10,16 @@
             <mat-form-field class="example-full-width">
                 <input [(ngModel)]="registerData.email" name="email" matInput placeholder="email" value="" type="email" />
             </mat-form-field>
-
+            <br>
             <mat-form-field class="example-full-width">
                     <input [(ngModel)]="registerData.pwd" name="password" matInput placeholder="password" value="" type="password" />
-            </mat-form-field>
+            </mat-form-field><br>
+            <mat-form-field class="example-full-width">
+                <input [(ngModel)]="registerData.name" name="name" matInput placeholder="name" value=""  />
+            </mat-form-field><br>
+            <mat-form-field class="example-full-width" style="width:50%">
+                <textarea [(ngModel)]="registerData.description" name="description" matInput placeholder="description" value=""></textarea> 
+           </mat-form-field><br>
             <button (click)="post()" mat-button color="primary">Register</button>
             </form>
     </mat-card-content>
