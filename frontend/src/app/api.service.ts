@@ -24,11 +24,15 @@ export class ApiService{
     //     })
     //   }
 
-    sendUserRegisterData(registerData){
-          this.http.post('http://localhost:3000/register',registerData).subscribe(
-          res=>{console.log(res)}
-          )
-      }
+    // registerUser(registerData){
+    //    return   this.http.post('http://localhost:3000/register',registerData);
+    //   }
+
+    //   loginUser(loginData){
+    //       this.http.post('http://localhost:3000/login',loginData).subscribe(res=>{
+    //         console.log(res);
+    //       });
+    //    }
 
       getUsers():Observable<any[]>{
         return  this.http.get<any[]>('http://localhost:3000/users').pipe(

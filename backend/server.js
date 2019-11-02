@@ -2,6 +2,7 @@ var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var jwt=require("jwt-simple")
 var app = express();
 
 var User = require("./models/user.js");
@@ -40,9 +41,28 @@ app.post("/register", (req, res) => {
   user.save((err, result) => {
     if (err) {
       console.log("saving user error");
+      res.status(501).send({err});
     }
-    res.sendStatus(200);
+    res.status(200).send({message:`register success for user: ${user.name +" "+ user.email} !`});
   });
+});
+
+app.post("/login", async (req, res) => {
+  var userData = req.body;
+  //console.log(userData.email)
+  var user=await User.findOne({email:userData.email})
+
+  if(!user) return res.status(401).send({message:"Email or password invalid"})
+
+  if(userData.pwd!=user.pwd) return res.status(401).send({message:"Email or password invalid"})
+
+  var payload={}
+
+  var token=jwt.encode(payload,'123')
+
+  console.log(token);
+
+  res.status(200).send({token});
 });
 
 mongoose.connect(
