@@ -30,7 +30,7 @@ export class AuthService {
 
   loginUser(loginData) {
     this.http.post("http://localhost:3000/login", loginData).subscribe(res => {
-      console.log(res);
+      //console.log(res);
       localStorage.setItem("token", res["token"]);
     });
   }
