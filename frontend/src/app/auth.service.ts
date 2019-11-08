@@ -25,13 +25,13 @@ export class AuthService {
   //   }
 
   registerUser(registerData) {
-    return this.http.post("http://localhost:3000/register", registerData);
+    return this.http.post<any>("http://localhost:3000/register", registerData);
   }
 
   loginUser(loginData) {
-    this.http.post("http://localhost:3000/login", loginData).subscribe(res => {
+    this.http.post<any>("http://localhost:3000/login", loginData).subscribe(res => {
       //console.log(res);
-      localStorage.setItem("token", res["token"]);
+      localStorage.setItem("token", res.token);
     });
   }
 

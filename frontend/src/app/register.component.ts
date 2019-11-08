@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   post(){
     //console.log(this.registerData);
     this.authService.registerUser(this.registerData).subscribe(res=>{
-       this.message=res["message"];  
+       this.message=res.message;  
     });
   }
 
