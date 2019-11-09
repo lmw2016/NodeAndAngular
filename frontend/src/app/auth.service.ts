@@ -9,6 +9,8 @@ import { Observable } from "rxjs";
 export class AuthService {
   constructor(private http: HttpClient) {}
 
+  path='http://localhost:3000/auth';
+
   // messages={}
 
   // getMessages():Observable<any[]>{
@@ -25,11 +27,11 @@ export class AuthService {
   //   }
 
   registerUser(registerData) {
-    return this.http.post<any>("http://localhost:3000/register", registerData);
+    return this.http.post<any>(this.path+'/register', registerData);
   }
 
   loginUser(loginData) {
-    this.http.post<any>("http://localhost:3000/login", loginData).subscribe(res => {
+    this.http.post<any>(this.path+'/login', loginData).subscribe(res => {
       //console.log(res);
       localStorage.setItem("token", res.token);
     });

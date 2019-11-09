@@ -1,9 +1,10 @@
 var jwt=require("jwt-simple")
 var bcrypt=require('bcrypt-nodejs')
 var User = require("./models/user.js");
+var express=require("express");
+var router=express.Router();
 
-module.exports={
-    register:(req, res) => {
+router.post("/register",(req, res) => {
         var user = new User(req.body);
         //console.log(userData.email)
         user.save((err, result) => {
@@ -13,9 +14,9 @@ module.exports={
           }
           res.status(200).send({message:`register success for user: ${user.name +" "+ user.email} !`});
         });
-      },
+      });
 
-    login:async (req, res) => {
+router.post("/login",async (req, res) => {
         var loginData = req.body;
         //console.log(userData.email)
         var user=await User.findOne({email:loginData.email})
@@ -35,4 +36,6 @@ module.exports={
         })
       
       }
-}
+)
+
+module.exports=router

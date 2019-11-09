@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var app = express();
 
 var User = require("./models/user.js");
-var Auth=require("./auth.js")
+var auth=require("./auth.js")
 
 var post = [
   { message: "hello" },
@@ -35,10 +35,6 @@ app.get("/profile/:id", async (req, res) => {
   }
 });
 
-app.post("/register", Auth.register);
-
-app.post("/login", Auth.login);
-
 mongoose.connect(
   "mongodb://localhost/pssocial",
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -47,4 +43,5 @@ mongoose.connect(
   }
 );
 
+app.use('/auth', auth)
 app.listen(3000);
