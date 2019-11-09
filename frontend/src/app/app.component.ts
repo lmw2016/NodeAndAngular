@@ -6,7 +6,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   selector: 'app-root',
   template: `
   <mat-toolbar>
-   PSSocial
+   <button mat-button routerLink="/">PSSocial</button>
    <span style="flex:1 1 auto"></span>
    <button mat-button routerLink="/register">Register</button>
    <button mat-button routerLink="/login">Login</button>
