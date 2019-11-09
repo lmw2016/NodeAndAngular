@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     this.apiService.getMessages().subscribe(data=>{
       this.messages=data;
-      console.log(this.messages);
+      //console.log(this.messages);
     });
     //this.apiService.getMessagesWithSub();
   }
