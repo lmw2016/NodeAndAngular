@@ -10,12 +10,17 @@ export class ApiService{
     constructor(private http:HttpClient){}
 
      // messages={}
+     urlPath='http://localhost:3000';
 
     getMessages():Observable<any[]>{
-      return  this.http.get<any[]>('http://localhost:3000/posts').pipe(
+      return  this.http.get<any[]>(this.urlPath+'/posts').pipe(
         // tap(),
         // catchError()
         )
+    }
+
+    postMessage(postMsg){
+      return  this.http.post<any>(this.urlPath+'/post',{msg:postMsg});
     }
 
     // getMessagesWithSub(){
@@ -35,7 +40,7 @@ export class ApiService{
     //    }
 
       getUsers():Observable<any[]>{
-        return  this.http.get<any[]>('http://localhost:3000/users').pipe(
+        return  this.http.get<any[]>(this.urlPath+'/users').pipe(
           // tap(),
           // catchError()
           )

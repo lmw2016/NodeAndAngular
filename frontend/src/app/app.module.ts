@@ -18,9 +18,11 @@ import { RegisterComponent } from './register.component';
 import { UsersComponent } from './users.component';
 import { ProfileComponent } from './profile.component';
 import {LoginComponent} from './login.component';
+import { PostComponent } from './post.component';
 
 
 const routers=[
+  {path:'',component:PostComponent},
   {path:'register',component:RegisterComponent},
   {path:'users',component:UsersComponent},
   {path:'profile/:id',component:ProfileComponent},
@@ -34,7 +36,8 @@ const routers=[
     RegisterComponent,
     UsersComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
