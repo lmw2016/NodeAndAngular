@@ -8,17 +8,12 @@ var User = require("./models/user.js");
 var Post = require("./models/post.js");
 var auth=require("./auth.js")
 
-var post = [
-  { message: "hello" },
-  { message: "hiworld" },
-  { message: "Andrew boy" }
-];
-
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/posts", (req, res) => {
-  res.send(post);
+app.get("/posts", async (req, res) => {
+  var posts=await Post.find({},"-__v")
+  res.send(posts);
 });
 
 app.post('/post', (req,res)=>{

@@ -19,13 +19,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class AppComponent implements OnInit {
   title = 'my frontend';
   constructor(private apiService:ApiService){}
-  messages:any[]=[];
 
   ngOnInit(){
-    this.apiService.getMessages().subscribe(data=>{
-      this.messages=data;
-      //console.log(this.messages);
-    });
-    //this.apiService.getMessagesWithSub();
+    
   }
 }

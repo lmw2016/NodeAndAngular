@@ -19,6 +19,7 @@ import { UsersComponent } from './users.component';
 import { ProfileComponent } from './profile.component';
 import {LoginComponent} from './login.component';
 import { PostComponent } from './post.component';
+import { MessagesComponent } from './messages.component';
 
 
 const routers=[
@@ -37,7 +38,8 @@ const routers=[
     UsersComponent,
     ProfileComponent,
     LoginComponent,
-    PostComponent
+    PostComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
