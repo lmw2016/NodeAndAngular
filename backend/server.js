@@ -11,12 +11,15 @@ var auth=require("./auth.js")
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/posts", async (req, res) => {
-  var posts=await Post.find({},"-__v")
+app.get("/posts/:id", async (req, res) => {
+  var author=req.params.id;
+  var posts=await Post.find({author},"-__v")
   res.send(posts);
 });
 
 app.post('/post', (req,res)=>{
+  var postData=req.body;
+  postData.author='5dc7049d69e6ea597cd056d6'; //'5dbdc28db64a6e4210faf35b'
    var post=new Post(req.body);
 
    post.save((err, result) => {

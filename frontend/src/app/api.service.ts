@@ -12,8 +12,8 @@ export class ApiService{
      // messages={}
      urlPath='http://localhost:3000';
 
-    getMessages():Observable<any[]>{
-      return  this.http.get<any[]>(this.urlPath+'/posts').pipe(
+    getMessages(userId):Observable<any[]>{
+      return  this.http.get<any[]>(this.urlPath+'/posts/'+userId).pipe(
         // tap(),
         // catchError()
         )
