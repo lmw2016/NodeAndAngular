@@ -11,6 +11,16 @@ export class AuthService {
 
   path='http://localhost:3000/auth';
 
+  AUTH_TOKEN='token'
+
+  get token(){
+    return localStorage.getItem(this.AUTH_TOKEN);
+  }
+
+  get isAuthenticated(){
+    return !!localStorage.getItem(this.AUTH_TOKEN)
+  }
+
   // messages={}
 
   // getMessages():Observable<any[]>{
@@ -33,7 +43,7 @@ export class AuthService {
   loginUser(loginData) {
     this.http.post<any>(this.path+'/login', loginData).subscribe(res => {
       //console.log(res);
-      localStorage.setItem("token", res.token);
+      localStorage.setItem(this.AUTH_TOKEN, res.token);
     });
   }
 
