@@ -12,9 +12,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/posts/:id", async (req, res) => {
-  var author=req.params.id;
-  var posts=await Post.find({author},"-__v")
-  res.send(posts);
+  try {
+    var author=req.params.id;
+    var posts=await Post.find({author},"-__v")
+    res.send(posts);
+  }
+  catch(error){
+     res.status(500).send({message:'did not find any posts!'})
+  }
 });
 
 app.post('/post', (req,res)=>{
