@@ -26,7 +26,7 @@ router.post("/login",async (req, res) => {
         bcrypt.compare(loginData.pwd,user.pwd,(err,isMatch)=>{
              if (!isMatch) return res.status(401).send({message:"Email or password invalid"})
       
-             var payload={}
+             var payload={sub:user._id}
       
               var token=jwt.encode(payload,'123')
       

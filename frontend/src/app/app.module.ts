@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,10 +20,13 @@ import { ProfileComponent } from './profile.component';
 import {LoginComponent} from './login.component';
 import { PostComponent } from './post.component';
 import { MessagesComponent } from './messages.component';
+import { AuthInterceptorService } from './authInterceptor.service';
+import { WelcomeComponent } from './welcome.component';
 
 
 const routers=[
-  {path:'',component:PostComponent},
+  {path:'', component:WelcomeComponent},
+  {path:'post',component:PostComponent},
   {path:'register',component:RegisterComponent},
   {path:'users',component:UsersComponent},
   {path:'profile/:id',component:ProfileComponent},
@@ -39,7 +42,8 @@ const routers=[
     ProfileComponent,
     LoginComponent,
     PostComponent,
-    MessagesComponent
+    MessagesComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,13 @@ const routers=[
     BrowserAnimationsModule,
    
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptorService,
+      multi:true
+   }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
