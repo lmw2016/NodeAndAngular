@@ -1,26 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './api.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { componentFactoryName } from '@angular/compiler';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: `
-  <mat-toolbar>
-   <button mat-button routerLink="/">PSSocial</button>
-   <span style="flex:1 1 auto"></span>
-   <button mat-button routerLink="/register">Register</button>
-   <button mat-button routerLink="/login">Login</button>
-   <button mat-button routerLink="/users">All Users</button>
-   </mat-toolbar>
-   <router-outlet><router-outlet>
-  `,
+  templateUrl:'app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
   title = 'my frontend';
-  constructor(private apiService:ApiService){}
+  constructor(private router:Router,private authService: AuthService){}
 
   ngOnInit(){
-    
   }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
+  }
+
 }

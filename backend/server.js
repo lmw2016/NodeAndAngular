@@ -7,9 +7,25 @@ var app = express();
 var User = require("./models/user.js");
 var Post = require("./models/post.js");
 var auth=require("./auth.js")
+var jwt=require('jwt-simple')
 
 app.use(cors());
 app.use(bodyParser.json());
+
+function checkAuthenticated(req,res,next){
+  if(!req.header('Authentication'))
+    return res.status(401).send({message:'invalid authentication'});
+
+  var token=req.header('Authentication').split(' ')[1];
+
+  var payload=jwt.decode(token,'123');
+
+  if(!payload)
+   return res.status(401).send({message:'invalid token'});
+
+  req.userId=payload.sub;
+  next()
+}
 
 app.get("/posts/:id", async (req, res) => {
   try {
@@ -22,11 +38,10 @@ app.get("/posts/:id", async (req, res) => {
   }
 });
 
-app.post('/post', (req,res)=>{
+app.post('/post', checkAuthenticated, (req,res)=>{
   var postData=req.body;
-  postData.author='5dc7049d69e6ea597cd056d6'; //'5dbdc28db64a6e4210faf35b'
-   var post=new Post(req.body);
-
+  postData.author=req.userId; //'5dc7049d69e6ea597cd056d6'; //'5dbdc28db64a6e4210faf35b'
+   var post=new Post(postData);
    post.save((err, result) => {
     if (err) {
       console.error("saving post error");
