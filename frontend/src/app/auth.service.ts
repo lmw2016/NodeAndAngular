@@ -41,10 +41,11 @@ export class AuthService {
   }
 
   loginUser(loginData) {
-    this.http.post<any>(this.path+'/login', loginData).subscribe(res => {
-      //console.log(res);
-      localStorage.setItem(this.AUTH_TOKEN, res.token);
-    });
+    return this.http.post<any>(this.path+'/login', loginData);
+    // .subscribe(res => {
+    //   //console.log(res);
+    //   localStorage.setItem(this.AUTH_TOKEN, res.token);
+    // });
   }
 
   //   getUsers():Observable<any[]>{
