@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
   title = 'my frontend';
   constructor(private router:Router,private authService: AuthService){}
 
+  get isAuthenticated(){
+    return this.authService.isAuthenticated;
+  }
+
   ngOnInit(){
   }
 

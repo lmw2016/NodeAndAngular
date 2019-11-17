@@ -1,10 +1,10 @@
 <mat-toolbar>
   <button mat-button routerLink="/">PSSocial</button>
   <span style="flex:1 1 auto"></span>
-  <button mat-button routerLink="/register" *ngIf='!this.authService.isAuthenticated'>Register</button>
-  <button mat-button routerLink="/login" *ngIf='!this.authService.isAuthenticated'>Login</button>
-  <button mat-button (click)="logout()" *ngIf='this.authService.isAuthenticated'>Logout</button>
-  <button mat-button routerLink="/post" *ngIf='this.authService.isAuthenticated'>Post a message</button>
+  <button mat-button routerLink="/register" *ngIf='!this.isAuthenticated'>Register</button>
+  <button mat-button routerLink="/login" *ngIf='!this.isAuthenticated'>Login</button>
+  <button mat-button (click)="logout()" *ngIf='this.isAuthenticated'>Logout</button>
+  <button mat-button routerLink="/post" *ngIf='this.isAuthenticated'>Post a message</button>
   <button mat-button routerLink="/users">All Users</button>
   </mat-toolbar>
   <router-outlet><router-outlet>

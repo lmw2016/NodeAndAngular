@@ -11,6 +11,10 @@ export class LoginComponent implements OnInit {
 
   loginData={}
 
+  get isAuthenticated(){
+     return this.authService.isAuthenticated;
+  }
+
   constructor(private authService: AuthService, private router:Router) { }
   
   ngOnInit() {
@@ -19,7 +23,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.authService.loginUser(this.loginData).subscribe(res=>{
       localStorage.setItem('token', res.token);
-      if(this.authService.isAuthenticated)
+      if(this.isAuthenticated)
          this.router.navigate(['/users'])
     });
   }
